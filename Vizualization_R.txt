@@ -1,0 +1,12 @@
+# Load ggplot2
+library(ggplot2)
+
+# Create a small data frame
+data <- data.frame(
+  x = c(1, 2, 3, 4, 5),
+  y = c(3, 5, 2, 8, 7)
+)
+
+# Simple scatter plot
+ggplot(data, aes(x = x, y = y)) +
+  geom_point()
