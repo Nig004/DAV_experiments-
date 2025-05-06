@@ -1,0 +1,20 @@
+# Step 1: Load necessary library
+library(forecast)
+
+# Step 2: Use built-in AirPassengers dataset
+data <- AirPassengers
+
+# Step 3: Plot the time series data
+plot(data, main = "Monthly Airline Passengers", ylab = "Passengers", xlab = "Year")
+
+# Step 4: Fit ARIMA model (auto.arima chooses best p,d,q)
+model <- auto.arima(data)
+
+# Step 5: Display model summary
+summary(model)
+
+# Step 6: Forecast next 12 months
+forecast_values <- forecast(model, h = 12)
+
+# Step 7: Plot the forecast
+plot(forecast_values)

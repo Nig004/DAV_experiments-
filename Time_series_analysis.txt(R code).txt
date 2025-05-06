@@ -1,0 +1,35 @@
+# Load required libraries
+install.packages("forecast")     # Uncomment if not installed
+install.packages("tseries")      # Uncomment if not installed
+
+library(forecast)
+library(tseries)
+
+# 1. Create example time series data
+set.seed(123)
+data <- ts(cumsum(rnorm(50)), frequency=1)
+
+# 2. Plot the time series
+plot(data, main="Time Series Data", ylab="Value", xlab="Time")
+
+# 3. Check stationarity with Augmented Dickey-Fuller test
+adf.test(data)
+
+# 4. Differencing if needed to make stationary
+data_diff <- diff(data)
+
+# 5. Plot differenced data
+plot(data_diff, main="Differenced Time Series", ylab="Difference", xlab="Time")
+
+# 6. Fit ARIMA model automatically
+model <- auto.arima(data)
+
+# 7. Model summary
+summary(model)
+
+# 8. Forecast next 10 time points
+forecast_values <- forecast(model, h=10)
+print(forecast_values)
+
+# 9. Plot forecast
+plot(forecast_values)
