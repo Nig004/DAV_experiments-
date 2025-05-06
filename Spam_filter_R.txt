@@ -1,0 +1,23 @@
+# Sample messages
+messages <- c(
+  "Congratulations! You won a free ticket",
+  "Call me when you get home",
+  "Free entry in a contest just for you",
+  "Let's meet for lunch",
+  "Win money now!!!"
+)
+
+# Define spam keywords
+spam_keywords <- c("free", "win", "prize", "money", "congratulations")
+
+# Simple function to check if a message is spam
+is_spam <- function(message) {
+  message_lower <- tolower(message)
+  any(sapply(spam_keywords, function(word) grepl(word, message_lower)))
+}
+
+# Apply the function to all messages
+spam_result <- sapply(messages, is_spam)
+
+# Print results
+data.frame(Message = messages, IsSpam = spam_result)
